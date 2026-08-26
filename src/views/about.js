@@ -1,5 +1,3 @@
-// Vista About: información del proyecto
-
 export default function About() {
   return `
     <section class="about">
