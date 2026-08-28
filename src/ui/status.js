@@ -11,20 +11,28 @@ function renderStatus() {
   const container = document.getElementById("messages");
   if (!container) return;
 
+  // Eliminar status anterior
   const oldStatus = container.querySelector(".status");
   if (oldStatus) oldStatus.remove();
 
-  if (state.status === "idle") {
-    container.innerHTML += `<div class="status idle">${state.message || "Esperando tu mensaje…"}</div>`;
-  } else if (state.status === "loading") {
-    container.innerHTML += `<div class="status loading">Escribiendo...</div>`;
-  } else if (state.status === "error") {
-    container.innerHTML += `<div class="status error">⚠️ ${state.message}</div>`;
-  } else if (state.status === "success") {
-    container.innerHTML += `<div class="status success">✔️ ${state.message}</div>`;
-    setTimeout(() => {
-      const successEl = container.querySelector(".status.success");
-      if (successEl) successEl.remove();
-    }, 2000);
+  // Renderizar según estado
+  switch (state.status) {
+    case "idle":
+      container.innerHTML += `<div class="status idle">${state.message || "Esperando tu mensaje…"}</div>`;
+      break;
+    case "loading":
+      container.innerHTML += `<div class="status loading">Escribiendo...</div>`;
+      break;
+    case "error":
+      container.innerHTML += `<div class="status error">⚠️ ${state.message}</div>`;
+      break;
+    case "success":
+      container.innerHTML += `<div class="status success">✔️ ${state.message}</div>`;
+      // Eliminar automáticamente el mensaje de éxito después de 2s
+      setTimeout(() => {
+        const successEl = container.querySelector(".status.success");
+        if (successEl) successEl.remove();
+      }, 2000);
+      break;
   }
 }
