@@ -1,4 +1,6 @@
 import { initCharacterChoice } from "../ui/characterChoice.js";
+import { setStatus } from "../ui/status.js";
+import { getCharacterReply } from "../services/aiClient.js";
 
 export default function Home() {
   const html = `
@@ -21,7 +23,21 @@ export default function Home() {
       </div>
     </section>
     <p id="selected-character" class="status"></p>
+    <div id="messages"></div>
   `;
   setTimeout(initCharacterChoice, 0);
   return html;
+}
+
+// Ejemplo de integración: cuando el usuario elige un personaje
+export async function loadCharacter(character) {
+  setStatus("loading", `Consultando a Gemini como ${character}...`);
+
+  try {
+    const reply = await getCharacterReply([], character); // [] = historial vacío
+    setStatus("success", `Personaje ${character} listo para chatear`);
+    document.getElementById("selected-character").textContent = reply;
+  } catch (err) {
+    setStatus("error", "No se pudo cargar el personaje.");
+  }
 }
