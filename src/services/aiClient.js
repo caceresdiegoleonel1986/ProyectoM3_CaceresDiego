@@ -1,14 +1,22 @@
+import { HOMERO_PROMPT, GOKU_PROMPT, WOODY_PROMPT } from "./prompts.js";
 import { buildPayload, normalizeAIResponse, getTrimmedHistory } from "../transform/chatPayload.js";
 import { fetchJson } from "./fetchJson.js";
 
 const CHAT_ENDPOINT = "/api/chat";
 
 // Función principal: obtiene la respuesta de un personaje según los mensajes de UI
-export async function getCharacterReply(uiMessages) {
+export async function getCharacterReply(uiMessages, character = "homero") {
   // 1. Recortar historial para controlar tokens y no enviar demasiado contexto
   const trimmed = getTrimmedHistory(uiMessages);
 
   // 2. Obtener el prompt dinámico según el personaje elegido en la UI
+  let systemPrompt;
+  switch (character.toLowerCase()) {
+    case "homero": systemPrompt = HOMERO_PROMPT; break;
+    case "goku": systemPrompt = GOKU_PROMPT; break;
+    case "woody": systemPrompt = WOODY_PROMPT; break;
+    default: systemPrompt = HOMERO_PROMPT; // fallback
+  }
 
   // 3. Construir el payload con el formato que espera Gemini
   const payload = buildPayload({
