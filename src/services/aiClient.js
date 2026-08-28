@@ -4,20 +4,24 @@ import { fetchJson } from "./fetchJson.js";
 
 const CHAT_ENDPOINT = "/api/chat";
 
+// Selección dinámica de prompt según personaje
+function getPrompt(character) {
+  switch (character.toLowerCase()) {
+    case "homero": return HOMERO_PROMPT;
+    case "goku": return GOKU_PROMPT;
+    case "woody": return WOODY_PROMPT;
+    default: return HOMERO_PROMPT; // fallback por defecto
+  }
+}
+
 // Función principal: obtiene la respuesta de un personaje según los mensajes de UI
 export async function getCharacterReply(uiMessages, character = "homero") {
   // 1. Recortar historial para controlar tokens y no enviar demasiado contexto
   const trimmed = getTrimmedHistory(uiMessages);
 
   // 2. Obtener el prompt dinámico según el personaje elegido en la UI
-  let systemPrompt;
-  switch (character.toLowerCase()) {
-    case "homero": systemPrompt = HOMERO_PROMPT; break;
-    case "goku": systemPrompt = GOKU_PROMPT; break;
-    case "woody": systemPrompt = WOODY_PROMPT; break;
-    default: systemPrompt = HOMERO_PROMPT; // fallback
-  }
-
+  const systemPrompt = getPrompt(character);
+  
   // 3. Construir el payload con el formato que espera Gemini
   const payload = buildPayload({
     systemPrompt,
