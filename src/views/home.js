@@ -1,11 +1,27 @@
-// Vista Home: bienvenida y acceso al chat
+import { initCharacterChoice } from "../ui/characterChoice.js";
 
 export default function Home() {
-  return `
-    <section class="home">
-      <h1>Bienvenido</h1>
-      <p>Elige un personaje y empieza a chatear.</p>
-      <a href="/chat" data-link class="btn">Ir al Chat</a>
+  const html = `
+    <h2>Elegí tu personaje</h2>
+    <section class="characters">
+      <div class="character-card" data-character="homero">
+        <img src="/img/Homero.jpg" alt="Homero Simpson">
+        <h3>Homero Simpson</h3>
+        <button class="choose-btn">Elegir</button>
+      </div>
+      <div class="character-card" data-character="goku">
+        <img src="/img/Goku.png" alt="Goku">
+        <h3>Goku</h3>
+        <button class="choose-btn">Elegir</button>
+      </div>
+      <div class="character-card" data-character="woody">
+        <img src="/img/Woody.jpg" alt="Woody">
+        <h3>Woody</h3>
+        <button class="choose-btn">Elegir</button>
+      </div>
     </section>
+    <p id="selected-character" class="status"></p>
   `;
+  setTimeout(initCharacterChoice, 0);
+  return html;
 }
