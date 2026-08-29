@@ -1,0 +1,45 @@
+/* Vistas Home / About / NotFound */
+.view {
+  padding: 2rem 1rem;
+  max-width: 40rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.view h1 { margin-bottom: 1rem; font-size: clamp(1.25rem, 2vw, 2rem); }
+.view p { margin-bottom: 1rem; color: #4b5563; }
+
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius);
+  font-weight: 500;
+}
+
+.btn--primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+.btn--primary:hover { background: var(--color-secondary); }
+
+/* Galería de personajes */
+.characterGallery {
+  display: grid;
+  grid-template-columns: 1fr; /* mobile-first */
+  gap: 1rem;
+  padding: 1rem;
+}
+
+/* Tablet: dos columnas */
+@media (min-width: var(--bp-tablet)) {
+  .characterGallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop: tres columnas */
+@media (min-width: var(--bp-desktop)) {
+  .characterGallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
