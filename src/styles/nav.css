@@ -1,0 +1,25 @@
+/* Navegación principal */
+.mainNav {
+  display: flex;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--color-primary);
+  border-bottom: 1px solid var(--color-secondary);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.mainNav__link {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius);
+  transition: background var(--transition);
+}
+
+.mainNav__link:hover,
+.mainNav__link.active {
+  background: var(--color-secondary);
+}
