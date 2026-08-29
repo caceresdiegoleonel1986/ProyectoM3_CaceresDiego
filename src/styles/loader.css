@@ -1,0 +1,18 @@
+/* Loader básico con animación de puntos */
+.loader {
+  font-style: italic;
+  color: #555;
+  margin: 8px 0;
+}
+
+.loader::after {
+  content: " .";
+  animation: dots 1.5s steps(3, end) infinite;
+}
+
+@keyframes dots {
+  0%   { content: " ."; }
+  33%  { content: " .."; }
+  66%  { content: " ..."; }
+  100% { content: " ."; }
+}
