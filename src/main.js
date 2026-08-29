@@ -13,4 +13,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 3. Manejar back/forward del navegador
   window.addEventListener("popstate", router);
+
+  // 4. Toggle dark/light mode
+  const toggleBtn = document.getElementById("toggle-dark");
+  if (toggleBtn) {
+    toggleBtn.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      document.body.classList.toggle("light");
+    });
+  }
 });
