@@ -1,0 +1,15 @@
+/* Estilos personalizados por personaje */
+.message-homero {
+  background: #fff3cd; /* amarillo suave */
+  color: #856404;
+}
+
+.message-goku {
+  background: #ffe0b2; /* naranja claro */
+  color: #e65100;
+}
+
+.message-woody {
+  background: #d7ccc8; /* marrón claro */
+  color: #4e342e;
+}
