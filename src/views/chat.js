@@ -44,7 +44,8 @@ export function initChat() {
 
       // 4. Llamar a Gemini con historial y personaje
       const raw = await fetchGemini(getMessages(), character);
-      const response = transformGeminiResponse(raw);
+      const profile = toCharacterProfile(raw);
+      const response = profile.reply;
 
       // 5. Agregar respuesta del asistente con estilo
       addMessage("assistant", response, cssClass);
