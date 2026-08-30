@@ -1,5 +1,5 @@
 import { fetchGemini } from "../services/fetchGemini.js";
-import { transformGeminiResponse } from "../transform/toCharacterProfile.js";
+import { toCharacterProfile } from "../transform/toCharacterProfile.js";
 import { setStatus } from "../ui/status.js";
 import { addMessage, getMessages, renderMessages } from "../ui/chatUI.js";
 import { getSelectedCharacter } from "../ui/characterChoice.js";
