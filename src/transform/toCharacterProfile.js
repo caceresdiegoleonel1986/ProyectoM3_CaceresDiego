@@ -4,6 +4,6 @@
 export function toCharacterProfile(raw) {
   return {
     name: raw?.character ?? "Desconocido",
-    reply: raw?.candidates?.[0]?.content?.parts?.[0]?.text || raw?.reply || "Sin respuesta",
+    reply: raw?.reply || raw?.candidates?.[0]?.content?.parts?.[0]?.text || "Sin respuesta",
   };
 }
