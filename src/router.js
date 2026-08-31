@@ -1,10 +1,12 @@
 // Router básico con History API
 
 import Home from "./views/home.js";
-import Chat, { initChat } from "./views/chat.js";   // 👈 importar también initChat
+import Chat, { initChat } from "./views/chat.js";
 import About from "./views/about.js";
 import NotFound from "./views/notFound.js";
 import { setStatus } from "./ui/status.js";
+import { getSelectedCharacter } from "./ui/characterChoice.js"; // 👈 importar el seleccionado
+import { addMessage, clearMessages } from "./ui/chatUI.js";
 
 const routes = {
   "/": Home,
@@ -23,7 +25,7 @@ export function router() {
     path.startsWith("/favicon") ||
     path.includes(".")
   ) {
-    return; // dejar que el servidor entregue el archivo
+    return;
   }
 
   const view = routes[path] || NotFound;
@@ -32,6 +34,21 @@ export function router() {
   // Estado inicial en chat
   if (path === "/chat") {
     setStatus("idle", "¡Hola! Empezá la conversación cuando quieras 👋");
-    initChat();   // 👈 inicializar listeners del chat
+    initChat();
+    clearMessages();
+
+    // 👇 Mostrar mensaje de bienvenida del personaje elegido
+    const charKey = getSelectedCharacter();
+    if (charKey) {
+      const characters = {
+        homero: "Homero Simpson",
+        goku: "Goku",
+        woody: "Woody"
+      };
+      const name = characters[charKey];
+      if (name) {
+        addMessage("character", `¡Hola! Soy ${name}, ¿qué querés saber?`, charKey);
+      }
+    }
   }
 }
