@@ -1,12 +1,13 @@
 // Router básico con History API
 
 import Home from "./views/home.js";
-import Chat from "./views/chat.js";
+import Chat, { initChat } from "./views/chat.js";   // 👈 importar también initChat
 import About from "./views/about.js";
 import NotFound from "./views/notFound.js";
 import { setStatus } from "./ui/status.js";
 
 const routes = {
+  "/": Home,
   "/home": Home,
   "/chat": Chat,
   "/about": About,
@@ -31,5 +32,6 @@ export function router() {
   // Estado inicial en chat
   if (path === "/chat") {
     setStatus("idle", "¡Hola! Empezá la conversación cuando quieras 👋");
+    initChat();   // 👈 inicializar listeners del chat
   }
 }
