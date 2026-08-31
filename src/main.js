@@ -1,25 +1,16 @@
-// Punto de entrada de la SPA
-// Inicializa el router y configura la navegación interna
-
-import { router } from "./router.js";
-import { setupLinkInterception } from "./navigation.js";
+import { initRouter } from "./ui/routerInit.js";
+import { initThemeToggle } from "./ui/themeToggle.js";
+import Chat, { initChat } from "./views/chat.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-  // 1. Render inicial
-  router();
+  const app = document.getElementById("app");
 
-  // 2. Interceptar clicks en links internos
-  setupLinkInterception();
+  initRouter((route) => {
+    if (route === "/chat") {
+      app.innerHTML = Chat();
+      initChat(); // ahora sí existen #send-btn y #chat-input
+    }
+  });
 
-  // 3. Manejar back/forward del navegador
-  window.addEventListener("popstate", router);
-
-  // 4. Toggle dark/light mode
-  const toggleBtn = document.getElementById("toggle-dark");
-  if (toggleBtn) {
-    toggleBtn.addEventListener("click", () => {
-      document.body.classList.toggle("dark");
-      document.body.classList.toggle("light");
-    });
-  }
+  initThemeToggle();
 });
