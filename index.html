@@ -4,34 +4,84 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Chat con Personajes</title>
-  <!-- Meta descripción para SEO -->
   <meta name="description" content="SPA Demo con Gemini AI - Chat con personajes" />
-  <!-- Estilos base y responsive -->
-  <link rel="stylesheet" href="/src/styles/style.css" />
+
+  <!-- Entry point correcto para Vite -->
+  <script type="module" src="./src/main.js"></script>
+  <link rel="stylesheet" href="./src/styles/style.css">
 </head>
 <body class="light">
   <!-- Header con navegación SPA -->
-  <header>
-    <nav>
-      <a href="/home" data-link>Home</a>
-      <a href="/chat" data-link>Chat</a>
-      <a href="/about" data-link>About</a>
+  <header class="mainNav">
+    <nav class="mainNav__container">
+      <a href="./home" data-link class="mainNav__link active">Home</a>
+      <a href="./chat" data-link class="mainNav__link">Chat</a>
+      <a href="./about" data-link class="mainNav__link">About</a>
     </nav>
-    <!-- Botón toggle -->
-    <button id="toggle-dark">🌙/☀️</button>
+    <button id="toggle-dark" class="toggle-dark">🌙 / ☀️</button>
   </header>
 
-  <!-- Contenedor principal donde se renderizan las vistas -->
-  <main id="app"></main>
+  <!-- Contenedor principal -->
+  <main id="app">
+    <!-- Vista Home -->
+    <section class="view home">
+      <div class="hero">
+        <h1>Chat con Personajes</h1>
+        <p>Elegí tu personaje favorito y empezá a conversar con ellos.</p>
+      </div>
 
-  <!-- Status para mensajes de estado -->
-  <div id="status" class="status"></div>
+      <div class="characters">
+        <div class="character-card">
+          <img src="./img/Homero.jpg" alt="Homero Simpson" />
+          <h3>Homero Simpson</h3>
+          <button data-character="homero">Elegir</button>
+        </div>
 
-  <footer>
-    <p>SPA Demo con Gemini AI</p>
+        <div class="character-card">
+          <img src="./img/Goku.png" alt="Goku" />
+          <h3>Goku</h3>
+          <button data-character="goku">Elegir</button>
+        </div>
+
+        <div class="character-card">
+          <img src="./img/Woody.jpg" alt="Woody" />
+          <h3>Woody</h3>
+          <button data-character="woody">Elegir</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vista About -->
+    <section class="view about" style="display:none;">
+      <h2>Sobre esta aplicación</h2>
+      <p>
+        Esta SPA fue creada como demo con Gemini AI. Podés chatear con personajes
+        icónicos como Homero, Goku y Woody, en un entorno simple y divertido.
+      </p>
+      <p>
+        El diseño es mobile‑first, adaptándose automáticamente a cualquier pantalla
+        gracias a CSS Grid y Flexbox.
+      </p>
+    </section>
+
+    <!-- Vista NotFound -->
+    <section class="view not-found" style="display:none;">
+      <h2>Página no encontrada</h2>
+      <p>
+        Lo sentimos, la ruta que intentaste abrir no existe en esta aplicación.
+      </p>
+      <a href="/home" data-link>Volver al inicio</a>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="mainFooter">
+    <div class="footer__container">
+      <p>SPA Demo con Gemini AI © 2026</p>
+      <p class="footer__credits">
+        Desarrollado por Diego · Diseño mobile‑first con CSS Grid y Flexbox
+      </p>
+    </div>
   </footer>
-
-  <!-- Script principal -->
-  <script type="module" src="/src/main.js"></script>
 </body>
 </html>
