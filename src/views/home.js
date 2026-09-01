@@ -28,7 +28,6 @@ export default function Home() {
       </section>
 
       <p id="selected-character" class="status"></p>
-      <div id="messages"></div>
     </section>
   `;
   setTimeout(initCharacterChoice, 0);
