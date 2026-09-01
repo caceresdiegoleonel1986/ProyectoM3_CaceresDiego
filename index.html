@@ -13,74 +13,15 @@
   <!-- Header con navegación SPA -->
   <header class="mainNav">
     <nav class="mainNav__container">
-      <a href="./home" data-link class="mainNav__link active">Home</a>
-      <a href="./chat" data-link class="mainNav__link">Chat</a>
-      <a href="./about" data-link class="mainNav__link">About</a>
+      <a href="/" data-link class="mainNav__link active">Home</a>
+      <a href="/chat" data-link class="mainNav__link">Chat</a>
+      <a href="/about" data-link class="mainNav__link">About</a>
     </nav>
     <button id="toggle-dark" class="toggle-dark">🌙 / ☀️</button>
   </header>
 
   <!-- Contenedor principal -->
-  <main id="app">
-    <!-- Vista Home -->
-    <section class="view home">
-      <div class="hero">
-        <h1>Chat con Personajes</h1>
-        <p>Elegí tu personaje favorito y empezá a conversar con ellos.</p>
-      </div>
-
-      <div class="characters">
-        <div class="character-card">
-          <img src="./img/Homero.jpg" alt="Homero Simpson" />
-          <h3>Homero Simpson</h3>
-          <button data-character="homero">Elegir</button>
-        </div>
-
-        <div class="character-card">
-          <img src="./img/Goku.png" alt="Goku" />
-          <h3>Goku</h3>
-          <button data-character="goku">Elegir</button>
-        </div>
-
-        <div class="character-card">
-          <img src="./img/Woody.jpg" alt="Woody" />
-          <h3>Woody</h3>
-          <button data-character="woody">Elegir</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Vista Chat -->
-    <section class="view chat" style="display:none;">
-      <div id="messages" class="messages"></div>
-      <div class="chat-input-container">
-        <input id="chat-input" type="text" placeholder="Escribe tu mensaje..." />
-        <button id="send-btn">Enviar</button>
-      </div>
-    </section>
-
-    <!-- Vista About -->
-    <section class="view about" style="display:none;">
-      <h2>Sobre esta aplicación</h2>
-      <p>
-        Esta SPA fue creada como demo con Gemini AI. Podés chatear con personajes
-        icónicos como Homero, Goku y Woody, en un entorno simple y divertido.
-      </p>
-      <p>
-        El diseño es mobile‑first, adaptándose automáticamente a cualquier pantalla
-        gracias a CSS Grid y Flexbox.
-      </p>
-    </section>
-
-    <!-- Vista NotFound -->
-    <section class="view not-found" style="display:none;">
-      <h2>Página no encontrada</h2>
-      <p>
-        Lo sentimos, la ruta que intentaste abrir no existe en esta aplicación.
-      </p>
-      <a href="./home" data-link>Volver al inicio</a>
-    </section>
-  </main>
+  <main id="app"></main>
 
   <!-- Footer -->
   <footer class="mainFooter">
