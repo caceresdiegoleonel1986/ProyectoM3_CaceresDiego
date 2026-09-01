@@ -19,6 +19,7 @@
   margin: 1rem auto 2rem;
   max-width: 60rem;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  animation: fadeInUp 1s ease forwards;
 }
 
 .hero h1 {
@@ -50,7 +51,13 @@
   width: 100%;
   transition: transform var(--transition), box-shadow var(--transition);
   text-align: center;
+  opacity: 0;
+  animation: fadeInUp 0.8s ease forwards;
 }
+
+.character-card:nth-child(1) { animation-delay: 0.2s; }
+.character-card:nth-child(2) { animation-delay: 0.4s; }
+.character-card:nth-child(3) { animation-delay: 0.6s; }
 
 .character-card:hover {
   transform: translateY(-6px);
@@ -61,24 +68,23 @@
 .character-card img {
   width: 100%;
   height: 300px;
-  object-fit: cover; /* llena el espacio */
-  object-position: center top; /* centra y evita recorte excesivo */
+  object-fit: cover;
+  object-position: center top;
   display: block;
   border-bottom: 1px solid #e5e7eb;
   border-radius: var(--radius) var(--radius) 0 0;
-  transition: transform var(--transition);
+  transition: transform var(--transition), filter var(--transition);
 }
 
-/* Zoom suave al hover */
 .character-card img:hover {
   transform: scale(1.05);
+  filter: brightness(1.1);
 }
 
-/* En pantallas más grandes, se adapta */
 @media (min-width: 768px) {
   .character-card img {
-    height: 300px; /* altura más generosa */
-    object-fit: contain; /* mantiene proporción sin recortar */
+    height: 300px;
+    object-fit: contain;
   }
 }
 
@@ -140,8 +146,8 @@
 
 /* Ajustes de contraste para modo oscuro */
 body.dark .character-card {
-  background: #1f2937; /* gris oscuro */
-  color: #f9fafb; /* texto claro */
+  background: #1f2937;
+  color: #f9fafb;
   box-shadow: 0 4px 12px rgba(0,0,0,0.4);
 }
 
@@ -159,7 +165,6 @@ body.dark .character-card button:hover {
   color: #111827;
 }
 
-/* Footer adaptativo */
 body.dark .mainFooter {
   background: #111827;
   color: #f9fafb;
@@ -167,4 +172,71 @@ body.dark .mainFooter {
 
 body.dark .footer__credits {
   color: #9ca3af;
+}
+
+/* About mejorado */
+.about {
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.about__intro {
+  font-size: 1.1rem;
+  color: var(--color-secondary);
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-inline: auto;
+}
+
+.characters-info {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  justify-items: center;
+}
+
+.characters-info .character-card {
+  max-width: 20rem;
+  padding: 1rem;
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.characters-info .character-card:nth-child(1) { animation-delay: 0.2s; }
+.characters-info .character-card:nth-child(2) { animation-delay: 0.4s; }
+.characters-info .character-card:nth-child(3) { animation-delay: 0.6s; }
+
+.characters-info .character-card h3 {
+  color: var(--color-primary);
+  margin-bottom: 0.5rem;
+}
+
+.characters-info .character-card p {
+  color: var(--color-secondary);
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+/* Responsive con breakpoints fijos */
+@media (min-width: 768px) {
+  .characters-info {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .characters-info {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Animación base */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
