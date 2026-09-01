@@ -1,45 +1,170 @@
 /* Vistas Home / About / NotFound */
 .view {
   padding: 2rem 1rem;
-  max-width: 40rem;
+  max-width: 80rem;
   margin: 0 auto;
   text-align: center;
 }
 
-.view h1 { margin-bottom: 1rem; font-size: clamp(1.25rem, 2vw, 2rem); }
-.view p { margin-bottom: 1rem; color: #4b5563; }
-
-.btn {
-  display: inline-block;
-  padding: 0.75rem 1.25rem;
+/* Hero */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #f9fafb 0%, #e0e7ff 100%);
   border-radius: var(--radius);
-  font-weight: 500;
+  margin: 1rem auto 2rem;
+  max-width: 60rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-.btn--primary {
+.hero h1 {
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.hero p {
+  font-size: 1rem;
+  color: var(--color-secondary);
+  margin-top: 0.5rem;
+}
+
+/* Galería de personajes con grid fluido */
+.characters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  padding: 1.5rem;
+  justify-items: center;
+}
+
+.character-card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  width: 100%;
+  transition: transform var(--transition), box-shadow var(--transition);
+  text-align: center;
+}
+
+.character-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+/* Imágenes uniformes */
+.character-card img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover; /* llena el espacio */
+  object-position: center top; /* centra y evita recorte excesivo */
+  display: block;
+  border-bottom: 1px solid #e5e7eb;
+  border-radius: var(--radius) var(--radius) 0 0;
+  transition: transform var(--transition);
+}
+
+/* Zoom suave al hover */
+.character-card img:hover {
+  transform: scale(1.05);
+}
+
+/* En pantallas más grandes, se adapta */
+@media (min-width: 768px) {
+  .character-card img {
+    height: 300px; /* altura más generosa */
+    object-fit: contain; /* mantiene proporción sin recortar */
+  }
+}
+
+.character-card h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0.75rem 0;
+  color: var(--color-primary);
+}
+
+.character-card button {
   background: var(--color-primary);
   color: #fff;
-}
-.btn--primary:hover { background: var(--color-secondary); }
-
-/* Galería de personajes */
-.characterGallery {
-  display: grid;
-  grid-template-columns: 1fr; /* mobile-first */
-  gap: 1rem;
-  padding: 1rem;
+  border: none;
+  border-radius: var(--radius);
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
 }
 
-/* Tablet: dos columnas */
-@media (min-width: var(--bp-tablet)) {
-  .characterGallery {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.character-card button:hover {
+  background: var(--color-secondary);
+  transform: scale(1.05);
 }
 
-/* Desktop: tres columnas */
-@media (min-width: var(--bp-desktop)) {
-  .characterGallery {
-    grid-template-columns: repeat(3, 1fr);
-  }
+/* About y NotFound */
+.about,
+.not-found {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.about h2,
+.not-found h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin-bottom: 1rem;
+  color: var(--color-primary);
+}
+
+.about p,
+.not-found p {
+  color: var(--color-secondary);
+  line-height: 1.6;
+}
+
+.not-found a {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color var(--transition);
+}
+
+.not-found a:hover {
+  color: var(--color-secondary);
+}
+
+/* Ajustes de contraste para modo oscuro */
+body.dark .character-card {
+  background: #1f2937; /* gris oscuro */
+  color: #f9fafb; /* texto claro */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
+body.dark .character-card h3 {
+  color: #f9fafb;
+}
+
+body.dark .character-card button {
+  background: #f9fafb;
+  color: #111827;
+}
+
+body.dark .character-card button:hover {
+  background: #9ca3af;
+  color: #111827;
+}
+
+/* Footer adaptativo */
+body.dark .mainFooter {
+  background: #111827;
+  color: #f9fafb;
+}
+
+body.dark .footer__credits {
+  color: #9ca3af;
 }
