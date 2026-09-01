@@ -26,23 +26,10 @@ export default function Home() {
           <button class="choose-btn">Elegir</button>
         </div>
       </section>
-
-      <p id="selected-character" class="status"></p>
     </section>
   `;
   setTimeout(initCharacterChoice, 0);
   return html;
 }
 
-// Ejemplo de integración: cuando el usuario elige un personaje
-export async function loadCharacter(character) {
-  setStatus("loading", `Consultando a Gemini como ${character}...`);
-
-  try {
-    const reply = await getCharacterReply([], character); // [] = historial vacío
-    setStatus("success", `Personaje ${character} listo para chatear`);
-    document.getElementById("selected-character").textContent = reply;
-  } catch (err) {
-    setStatus("error", "No se pudo cargar el personaje.");
-  }
-}
+// Sin estado visible en la Home: la selección se resuelve al navegar al chat.
