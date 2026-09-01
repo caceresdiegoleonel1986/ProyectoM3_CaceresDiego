@@ -7,8 +7,10 @@
     "test": "tests"
   },
   "scripts": {
-    "start": "echo 'No hay servidor, se sirve estático'",
-    "test": "vitest"
+  "dev": "vite",
+  "build": "vite build",
+  "preview": "vite preview",
+  "test": "vitest"
   },
   "repository": {
     "type": "git",
@@ -22,6 +24,7 @@
   "homepage": "https://github.com/caceresdiegoleonel1986/ProyectoM3_CaceresDiego#readme",
   "devDependencies": {
     "jsdom": "^30.0.1",
+    "vite": "^8.2.2",
     "vitest": "^4.1.11"
   },
   "dependencies": {
