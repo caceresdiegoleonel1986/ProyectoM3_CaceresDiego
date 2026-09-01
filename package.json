@@ -1,0 +1,30 @@
+{
+  "name": "project-root",
+  "version": "1.0.0",
+  "description": "Aplicación **Single Page Application (SPA)** que permite chatear con personajes ficticios (Homero, Goku, Woody) usando la API de Gemini.  \r El proyecto está **modularizado** siguiendo una arquitectura clara:",
+  "main": "vitest.config.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "start": "echo 'No hay servidor, se sirve estático'",
+    "test": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/caceresdiegoleonel1986/ProyectoM3_CaceresDiego.git"
+  },
+  "keywords": [],
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/caceresdiegoleonel1986/ProyectoM3_CaceresDiego/issues"
+  },
+  "homepage": "https://github.com/caceresdiegoleonel1986/ProyectoM3_CaceresDiego#readme",
+  "devDependencies": {
+    "jsdom": "^30.0.1",
+    "vitest": "^4.1.11"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1"
+  }
+}
