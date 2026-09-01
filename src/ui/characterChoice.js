@@ -2,7 +2,6 @@ let selectedCharacter = null;
 
 export function initCharacterChoice() {
   const buttons = document.querySelectorAll(".choose-btn");
-  const status = document.getElementById("selected-character");
 
   buttons.forEach(btn => {
     btn.addEventListener("click", () => {
@@ -10,7 +9,10 @@ export function initCharacterChoice() {
       const charKey = card.dataset.character;
 
       setSelectedCharacter(charKey);
-      status.textContent = `Personaje elegido: ${card.querySelector("h3").textContent}`;
+
+      // 👇 Navegar directamente al chat
+      history.pushState(null, "", "/chat");
+      window.dispatchEvent(new PopStateEvent("popstate"));
     });
   });
 }
