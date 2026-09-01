@@ -42,7 +42,7 @@ export function initChat() {
   const newSendBtn = sendBtn.cloneNode(true);
   sendBtn.parentNode.replaceChild(newSendBtn, sendBtn);
 
-  newSendBtn.addEventListener("click", async () => {
+  const sendMessage = async () => {
     const text = input.value.trim();
     if (!text) return;
 
@@ -66,6 +66,15 @@ export function initChat() {
     } finally {
       hideLoader();
       input.value = "";
+    }
+  };
+
+  newSendBtn.addEventListener("click", sendMessage);
+
+  input.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      sendMessage();
     }
   });
 
