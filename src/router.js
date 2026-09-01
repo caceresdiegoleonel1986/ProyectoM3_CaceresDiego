@@ -4,7 +4,8 @@ import About from "./views/about.js";
 import NotFound from "./views/notFound.js";
 import { setStatus } from "./ui/status.js";
 import { getSelectedCharacter } from "./ui/characterChoice.js";
-import { addMessage, clearMessages, loadMessages, getMessages, saveMessages } from "./ui/chatUI.js";
+import { addMessage, getMessages, loadMessages, getWelcomeMessage } from "./ui/chatUI.js";
+import { getCharacterConfig } from "./config/characters.js";
 
 const routes = {
   "/": Home,
@@ -32,31 +33,20 @@ export function router() {
     setStatus("idle", "¡Hola! Empezá la conversación cuando quieras 👋");
 
     requestAnimationFrame(() => {
-      initChat();
-
       const charKey = getSelectedCharacter() || "homero";
-      if (charKey) {
-        const characters = {
-          homero: "Homero Simpson",
-          goku: "Goku",
-          woody: "Woody"
-        };
+      const config = getCharacterConfig(charKey);
 
-        // cargar historial guardado del personaje
-        loadMessages(charKey);
+      initChat();
+      loadMessages(charKey);
 
-        // si no hay historial, mostrar saludo inicial
-        if (getMessages().length === 0) {
-          addMessage("character", `¡Hola! Soy ${characters[charKey]}, ¿qué querés saber?`, charKey);
-          saveMessages(charKey);
-        }
+      if (getMessages().length === 0) {
+        addMessage("character", config.greeting, charKey);
       }
     });
   }
 
-  // Actualizar estado activo del nav
   const navLinks = document.querySelectorAll(".mainNav__link");
-  navLinks.forEach(link => {
+  navLinks.forEach((link) => {
     if (link.getAttribute("href") === path) {
       link.classList.add("active");
     } else {
