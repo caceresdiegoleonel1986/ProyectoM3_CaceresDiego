@@ -1,16 +1,22 @@
-/* Layout del chat */
+/* ====== Layout general ====== */
 .chatApp {
   display: flex;
-  flex-direction: column; /* mobile-first */
+  flex-direction: column;
   height: 100vh;
-  background: #ffffff;
+  background: var(--color-bg);
 }
 
+/* Header */
 .chatHeader {
   padding: 1rem;
   border-bottom: 1px solid #e5e7eb;
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 600;
+  text-align: center;
 }
 
+/* ====== Área de mensajes ====== */
 .chatMessages {
   flex: 1;
   overflow-y: auto;
@@ -18,74 +24,206 @@
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  scroll-behavior: smooth;
 }
 
-.chatComposer {
+/* ====== Zona de entrada ====== */
+.input-area {
   display: flex;
-  gap: 0.5rem;
-  padding: 0.75rem;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem;
   border-top: 1px solid #e5e7eb;
+  background: var(--color-bg);
+  position: sticky;
+  bottom: 0;
 }
 
-/* Burbujas */
-.message {
-  max-width: 85%;
+#chat-input {
+  flex: 1;
   padding: 0.75rem 1rem;
-  border-radius: var(--radius);
-  transition: transform var(--transition), opacity var(--transition);
+  border: 1px solid #d1d5db;
+  border-radius: 2rem;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+#chat-input:focus {
+  border-color: var(--color-primary);
 }
 
-.message--character {
-  align-self: flex-start;
-  background: #f3f4f6;
-  border: 1px solid #e5e7eb;
+#send-btn {
+  padding: 0.75rem 1.25rem;
+  border: none;
+  border-radius: 2rem;
+  background: var(--color-primary);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.1s ease;
+}
+#send-btn:hover {
+  background: var(--color-secondary);
+  transform: scale(1.05);
 }
 
+/* ====== Burbujas ====== */
+.message {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  max-width: 75%;
+  padding: 0.75rem 1rem;
+  border-radius: 1.25rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  animation: fadeInUp 0.3s ease;
+  position: relative; /* necesario para las colas */
+}
+
+/* Avatar (solo personajes/asistente) */
+.message__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 4px rgba(0,0,0,0.2);
+}
+
+/* Texto */
+.message p {
+  margin: 0;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+/* ====== Usuario (derecha, sin avatar) ====== */
 .message--user {
   align-self: flex-end;
   background: var(--color-primary);
   color: #fff;
+  border-bottom-right-radius: 0.25rem;
+  flex-direction: row; /* solo texto */
+}
+.message--user::after {
+  content: "";
+  position: absolute;
+  right: -8px;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-left: 8px solid var(--color-primary);
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
 }
 
-/* Estados */
-.message--typing { font-style: italic; opacity: 0.7; animation: typing-pulse 1.2s infinite; }
-@keyframes typing-pulse { 0%,100%{opacity:0.4;} 50%{opacity:0.9;} }
-
-.message--error {
-  background: var(--color-error-bg);
-  color: var(--color-error);
-  text-align: center;
-  font-size: 0.9rem;
+/* ====== Personaje/Asistente (izquierda, con avatar) ====== */
+.message--assistant,
+.message--character {
+  align-self: flex-start;
+  background: #f3f4f6;
+  color: #111827;
+  border-bottom-left-radius: 0.25rem;
+  flex-direction: row; /* avatar a la izquierda */
+}
+.message--assistant::after,
+.message--character::after {
+  content: "";
+  position: absolute;
+  left: -8px;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-right: 8px solid #f3f4f6;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
 }
 
-.message__retry {
-  margin-top: 0.5rem;
-  padding: 0.25rem 0.75rem;
-  background: var(--color-error);
+/* ====== Colores personalizados ====== */
+.message--goku {
+  background: #eb6b03;
+  color: #622c0d;
+}
+.message--goku::after {
+  border-right-color: #eb6b03;
+}
+
+.message--homero {
+  background: #fde68a;
+  color: #92400e;
+}
+.message--homero::after {
+  border-right-color: #fde68a;
+}
+
+.message--woody {
+  background: #bfdbfe;
+  color: #1e3a8a;
+}
+.message--woody::after {
+  border-right-color: #bfdbfe;
+}
+
+/* ====== Modo oscuro ====== */
+body.dark .message--user {
+  background: #f9fafb; /* fondo claro */
+  color: #111827;      /* texto oscuro */
+}
+body.dark .message--user::after {
+  border-left-color: #f9fafb;
+}
+
+/* ====== Corrección de alineación ====== */
+.messages {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* por defecto los personajes a la izquierda */
+}
+
+.message--user {
+  align-self: flex-end; /* empuja el mensaje del usuario a la derecha */
+}
+
+/* ====== Botón Enviar en modo oscuro ====== */
+body.dark #send-btn {
+  background: #f9fafb; /* fondo claro */
+  color: #111827;      /* texto oscuro */
+}
+
+body.dark #send-btn:hover {
+  background: #e5e7eb; /* tono más suave al pasar el mouse */
+  color: #111827;
+}
+
+.clear-area {
+  margin-top: 10px;
+  text-align: right;
+}
+
+#clear-history-btn {
+  background-color: #e74c3c; /* rojo */
   color: #fff;
-  border-radius: 0.25rem;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
   cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
 }
-.message__retry:hover { background: #991b1b; }
 
-/* Composer */
-.chatComposer__input {
-  flex: 1;
-  padding: 0.75rem;
-  border: 1px solid #d1d5db;
-  border-radius: var(--radius);
+#clear-history-btn:hover {
+  background-color: #c0392b; /* rojo más oscuro */
 }
-.chatComposer__send {
-  padding: 0.75rem 1.25rem;
-  background: var(--color-primary);
-  color: #fff;
-  border-radius: var(--radius);
-}
-.chatComposer__send:hover { background: var(--color-secondary); }
 
-/* Responsive */
-@media (min-width: var(--bp-tablet)) { .message { max-width: 75%; } }
-@media (min-width: var(--bp-desktop)) {
-  .chatApp { max-width: 64rem; margin: 0 auto; }
+/* ====== Animación ====== */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ====== Responsive ====== */
+@media (min-width: 768px) {
   .message { max-width: 60%; }
+}
+@media (min-width: 1024px) {
+  .message { max-width: 55%; }
 }
