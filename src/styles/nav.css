@@ -1,25 +1,79 @@
 /* Navegación principal */
 .mainNav {
   display: flex;
-  gap: 1rem;
-  padding: 0.75rem 1rem;
-  background: var(--color-primary);
-  border-bottom: 1px solid var(--color-secondary);
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  padding: 1rem;
+  background: linear-gradient(90deg, #111827, #374151);
   position: sticky;
   top: 0;
   z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 
 .mainNav__link {
-  color: #ffffff;
+  color: #f9fafb;
   text-decoration: none;
-  font-weight: 500;
-  padding: 0.25rem 0.5rem;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  padding: 0.4rem 0.8rem;
   border-radius: var(--radius);
-  transition: background var(--transition);
+  transition: background var(--transition), transform var(--transition);
 }
 
 .mainNav__link:hover,
 .mainNav__link.active {
-  background: var(--color-secondary);
+  background: rgba(255,255,255,0.15);
+  transform: translateY(-2px);
+}
+
+/* Footer fijo */
+.mainFooter {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #111827;
+  color: #f9fafb;
+  text-align: center;
+  padding: 1rem;
+  box-shadow: 0 -2px 6px rgba(0,0,0,0.2);
+  z-index: 999;
+}
+
+.footer__credits {
+  font-size: 0.9rem;
+  color: #9ca3af;
+  margin-top: 0.25rem;
+}
+
+/* Espacio para evitar que el footer tape contenido */
+body {
+  padding-bottom: 70px;
+}
+
+/* Botón toggle dark/light */
+#toggle-dark {
+  background: transparent;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: #f9fafb; /* color claro para nav oscuro */
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+#toggle-dark:hover {
+  transform: scale(1.2);
+  color: #e5e7eb;
+}
+
+/* En modo claro, el nav es oscuro pero el texto del toggle debe seguir viéndose */
+body.light #toggle-dark {
+  color: #f9fafb;
+}
+
+/* En modo oscuro, el nav sigue oscuro, pero el ícono se adapta */
+body.dark #toggle-dark {
+  color: #f9fafb;
 }
