@@ -1,33 +1,22 @@
-import { addMessage, clearMessages } from "./chatUI.js";
-import { setSelectedCharacter } from "./characterChoice.js";
-
-const characters = {
-  homero: { name: "Homero Simpson" },
-  goku: { name: "Goku" },
-  woody: { name: "Woody" }
-};
+import { addMessage } from "./chatUI.js";
 
 export function initChat() {
-  const characterButtons = document.querySelectorAll(".character-card button");
-  const chatSection = document.querySelector(".chat");
-  const homeSection = document.querySelector(".home");
+  const sendBtn = document.getElementById("send-btn");
+  const input = document.getElementById("chat-input");
 
-  characterButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const charKey = btn.dataset.character;
-      const currentCharacter = characters[charKey];
+  if (sendBtn && input) {
+    // Reemplazar el botón para limpiar listeners previos
+    const newSendBtn = sendBtn.cloneNode(true);
+    sendBtn.parentNode.replaceChild(newSendBtn, sendBtn);
 
-      setSelectedCharacter(charKey);
-      homeSection.style.display = "none";
-      chatSection.style.display = "block";
+    newSendBtn.addEventListener("click", () => {
+      const text = input.value.trim();
+      if (!text) return;
 
-      clearMessages();
+      addMessage("user", text);
+      input.value = "";
 
-      addMessage(
-        "character",
-        `¡Hola! Soy ${currentCharacter.name}, ¿qué querés saber?`,
-        charKey
-      );
+      addMessage("assistant", "Procesando tu mensaje...");
     });
-  });
+  }
 }
