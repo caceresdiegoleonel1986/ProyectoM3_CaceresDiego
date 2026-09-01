@@ -6,7 +6,6 @@
   <title>Chat con Personajes</title>
   <meta name="description" content="SPA Demo con Gemini AI - Chat con personajes" />
 
-  <!-- Entry point correcto para Vite -->
   <script type="module" src="./src/main.js"></script>
   <link rel="stylesheet" href="./src/styles/style.css">
 </head>
@@ -51,6 +50,15 @@
       </div>
     </section>
 
+    <!-- Vista Chat -->
+    <section class="view chat" style="display:none;">
+      <div id="messages" class="messages"></div>
+      <div class="chat-input-container">
+        <input id="chat-input" type="text" placeholder="Escribe tu mensaje..." />
+        <button id="send-btn">Enviar</button>
+      </div>
+    </section>
+
     <!-- Vista About -->
     <section class="view about" style="display:none;">
       <h2>Sobre esta aplicación</h2>
@@ -70,7 +78,7 @@
       <p>
         Lo sentimos, la ruta que intentaste abrir no existe en esta aplicación.
       </p>
-      <a href="/home" data-link>Volver al inicio</a>
+      <a href="./home" data-link>Volver al inicio</a>
     </section>
   </main>
 
