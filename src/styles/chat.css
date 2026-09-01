@@ -9,9 +9,9 @@
 .chat {
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 110px - 76px);
-  height: calc(100vh - 110px - 76px);
-  max-height: calc(100vh - 110px - 76px);
+  min-height: calc(100vh - 110px - 38px);
+  height: calc(100vh - 110px - 38px);
+  max-height: calc(100vh - 110px - 38px);
   padding: 0.85rem 0.9rem 0.75rem;
   box-sizing: border-box;
 }

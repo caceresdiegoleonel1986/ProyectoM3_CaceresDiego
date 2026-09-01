@@ -59,12 +59,12 @@
 
 /* Espacio para evitar que el footer tape contenido */
 body {
-  padding-bottom: 72px;
+  padding-bottom: 40px;
 }
 
 @media (max-width: 420px) {
   body {
-    padding-bottom: 78px;
+    padding-bottom: 44px;
   }
 
   .mainFooter {
