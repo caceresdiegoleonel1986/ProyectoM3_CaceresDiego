@@ -21,7 +21,7 @@ function renderStatus() {
       container.innerHTML += `<div class="status idle">${state.message || "Esperando tu mensaje…"}</div>`;
       break;
     case "loading":
-      container.innerHTML += `<div class="status loading">Escribiendo...</div>`;
+      container.innerHTML += `<div class="status loading">${state.message || "La IA está pensando..."}</div>`;
       break;
     case "error":
       container.innerHTML += `<div class="status error">⚠️ ${state.message}</div>`;

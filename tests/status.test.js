@@ -15,9 +15,9 @@ describe("Status component", () => {
     expect(container.querySelector(".status.idle")).not.toBeNull();
   });
 
-  it("renderiza estado loading", () => {
-    setStatus("loading");
-    expect(container.innerHTML).toContain("Escribiendo...");
+  it("renderiza estado loading con mensaje de pensamiento", () => {
+    setStatus("loading", "La IA está pensando...");
+    expect(container.innerHTML).toContain("La IA está pensando...");
     expect(container.querySelector(".status.loading")).not.toBeNull();
   });
 

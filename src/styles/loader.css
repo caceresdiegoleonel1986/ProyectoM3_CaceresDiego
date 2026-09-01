@@ -1,8 +1,25 @@
-/* Loader básico con animación de puntos */
+/* Loader premium para el estado de carga de la IA */
 .loader {
-  font-style: italic;
-  color: #555;
-  margin: 8px 0;
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin: 0.45rem 0;
+  padding: 0.55rem 0.85rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(124, 58, 237, 0.12));
+  border: 1px solid rgba(96, 165, 250, 0.25);
+  color: #1e3a8a;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.08);
+}
+
+.loader::before {
+  content: "●";
+  color: #2563eb;
+  font-size: 0.7rem;
+  animation: pulse 1.2s ease-in-out infinite;
 }
 
 .loader::after {
@@ -15,4 +32,9 @@
   33%  { content: " .."; }
   66%  { content: " ..."; }
   100% { content: " ."; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.45; transform: scale(0.9); }
+  50% { opacity: 1; transform: scale(1.15); }
 }
