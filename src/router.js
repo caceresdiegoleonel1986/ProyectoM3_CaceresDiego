@@ -1,12 +1,10 @@
-// Router básico con History API
-
 import Home from "./views/home.js";
 import Chat, { initChat } from "./views/chat.js";
 import About from "./views/about.js";
 import NotFound from "./views/notFound.js";
 import { setStatus } from "./ui/status.js";
-import { getSelectedCharacter } from "./ui/characterChoice.js"; // 👈 importar el seleccionado
-import { addMessage, clearMessages } from "./ui/chatUI.js";
+import { getSelectedCharacter } from "./ui/characterChoice.js";
+import { addMessage, clearMessages, loadMessages, getMessages, saveMessages } from "./ui/chatUI.js";
 
 const routes = {
   "/": Home,
@@ -18,37 +16,53 @@ const routes = {
 export function router() {
   const path = window.location.pathname;
 
-  // No interceptar recursos estáticos
   if (
     path.startsWith("/img") ||
     path.startsWith("/styles") ||
     path.startsWith("/favicon") ||
     path.includes(".")
   ) {
-    return;
+    return path;
   }
 
   const view = routes[path] || NotFound;
   document.getElementById("app").innerHTML = view();
 
-  // Estado inicial en chat
   if (path === "/chat") {
     setStatus("idle", "¡Hola! Empezá la conversación cuando quieras 👋");
-    initChat();
-    clearMessages();
 
-    // 👇 Mostrar mensaje de bienvenida del personaje elegido
-    const charKey = getSelectedCharacter();
-    if (charKey) {
-      const characters = {
-        homero: "Homero Simpson",
-        goku: "Goku",
-        woody: "Woody"
-      };
-      const name = characters[charKey];
-      if (name) {
-        addMessage("character", `¡Hola! Soy ${name}, ¿qué querés saber?`, charKey);
+    requestAnimationFrame(() => {
+      initChat();
+
+      const charKey = getSelectedCharacter() || "homero";
+      if (charKey) {
+        const characters = {
+          homero: "Homero Simpson",
+          goku: "Goku",
+          woody: "Woody"
+        };
+
+        // cargar historial guardado del personaje
+        loadMessages(charKey);
+
+        // si no hay historial, mostrar saludo inicial
+        if (getMessages().length === 0) {
+          addMessage("character", `¡Hola! Soy ${characters[charKey]}, ¿qué querés saber?`, charKey);
+          saveMessages(charKey);
+        }
       }
-    }
+    });
   }
+
+  // Actualizar estado activo del nav
+  const navLinks = document.querySelectorAll(".mainNav__link");
+  navLinks.forEach(link => {
+    if (link.getAttribute("href") === path) {
+      link.classList.add("active");
+    } else {
+      link.classList.remove("active");
+    }
+  });
+
+  return path;
 }
