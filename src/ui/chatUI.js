@@ -20,6 +20,20 @@ export function getMessages() {
   return messages;
 }
 
+// Guardar historial en localStorage por personaje
+export function saveMessages(characterKey) {
+  if (!characterKey) return;
+  localStorage.setItem(`chatHistory_${characterKey}`, JSON.stringify(messages));
+}
+
+// Cargar historial desde localStorage por personaje
+export function loadMessages(characterKey) {
+  if (!characterKey) return;
+  const saved = localStorage.getItem(`chatHistory_${characterKey}`);
+  messages = saved ? JSON.parse(saved) : [];
+  renderMessages();
+}
+
 // Agregar mensaje (renderiza inmediatamente)
 export function addMessage(role, content, characterKey = null) {
   let cssClass;
@@ -37,13 +51,20 @@ export function addMessage(role, content, characterKey = null) {
   }
 
   messages = [...messages, { role, content, cssClass, avatar }];
-  renderMessages(); // ✅ vuelve acá
+
+  // Esperar a que el contenedor exista antes de renderizar
+  requestAnimationFrame(() => renderMessages());
+
+  // Guardar automáticamente cada vez que se agrega un mensaje
+  if (characterKey) {
+    saveMessages(characterKey);
+  }
 }
 
 // Renderizar mensajes
 export function renderMessages() {
   const container = document.getElementById("messages");
-  if (!container) return;
+  if (!container) return; // evita errores si el chat aún no está montado
 
   container.innerHTML = "";
 
@@ -72,11 +93,21 @@ export function renderMessages() {
     container.appendChild(div);
   });
 
+  // Auto-scroll al último mensaje
   container.scrollTop = container.scrollHeight;
 }
 
 // Limpiar mensajes
 export function clearMessages() {
   messages = [];
-  renderMessages();
+  // Esperar a que el contenedor exista antes de limpiar
+  requestAnimationFrame(() => renderMessages());
+}
+
+// Borrar historial de un personaje
+export function clearCharacterHistory(characterKey) {
+  if (!characterKey) return;
+  localStorage.removeItem(`chatHistory_${characterKey}`);
+  messages = [];
+  requestAnimationFrame(() => renderMessages());
 }
