@@ -57,6 +57,32 @@
   margin-top: 0.2rem;
 }
 
+.footer__social {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.footer__social a {
+  color: #f9fafb;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.35rem 0.7rem;
+  border-radius: 6px;
+  transition: background 0.2s ease, transform 0.2s ease;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.footer__social a:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+  text-decoration: none;
+}
+
 /* Espacio para evitar que el footer tape contenido */
 body {
   padding-bottom: 40px;
@@ -68,7 +94,7 @@ body {
   }
 
   .mainFooter {
-    padding: 0.5rem 0.75rem;
+    padding: 0rem 0.75rem;
   }
 }
 
