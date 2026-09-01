@@ -104,4 +104,25 @@ describe("Integración Chat", () => {
     const msg2 = await waitForMessage(1);
     expect(msg2.content).toBe("Error al conectar con la AI");
   });
+
+  it("muestra el botón de borrar historial si ya existe historial", () => {
+    const clearArea = document.querySelector(".clear-area");
+    const input = document.getElementById("chat-input");
+    const sendBtn = document.getElementById("send-btn");
+
+    const messages = [
+      { role: "user", content: "Hola", cssClass: "message--user" },
+      { role: "character", content: "Hola", cssClass: "message--homero" }
+    ];
+
+    const originalMessages = getMessages();
+    originalMessages.length = 0;
+    originalMessages.push(...messages);
+
+    clearArea.style.display = "block";
+    input.value = "Hola Homero";
+    sendBtn.click();
+
+    expect(clearArea.style.display).toBe("block");
+  });
 });

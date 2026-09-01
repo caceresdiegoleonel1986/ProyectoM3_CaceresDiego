@@ -256,25 +256,27 @@ body.dark #send-btn:hover {
 }
 
 .clear-area {
-  margin-top: 10px;
   text-align: right;
+  padding: 0.5rem 0.75rem 0;
+  position: static;
+  z-index: 1;
 }
 
 #clear-history-btn {
-  background: linear-gradient(135deg, #fef2f2 0%, #f3e8ff 100%);
-  color: #4b5563;
-  border: 1px solid rgba(148, 163, 184, 0.35);
-  padding: 0.55rem 0.85rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 100%);
+  color: #475569;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  padding: 0.55rem 0.9rem;
   border-radius: 999px;
   cursor: pointer;
   font-size: 0.88rem;
   font-weight: 600;
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-  box-shadow: 0 2px 8px rgba(148, 163, 184, 0.18);
+  box-shadow: 0 2px 8px rgba(148, 163, 184, 0.16);
 }
 
 #clear-history-btn:hover {
-  background: linear-gradient(135deg, #fdf2f2 0%, #ede9fe 100%);
+  background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
   transform: translateY(-1px);
   box-shadow: 0 6px 14px rgba(148, 163, 184, 0.2);
 }

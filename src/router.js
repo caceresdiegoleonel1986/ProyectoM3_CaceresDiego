@@ -1,5 +1,5 @@
 import Home from "./views/home.js";
-import Chat, { initChat } from "./views/chat.js";
+import Chat, { initChat, syncClearHistoryButton } from "./views/chat.js";
 import About from "./views/about.js";
 import NotFound from "./views/notFound.js";
 import { setStatus } from "./ui/status.js";
@@ -38,9 +38,12 @@ export function router() {
 
       initChat();
       loadMessages(charKey);
+      syncClearHistoryButton();
 
       if (getMessages().length === 0) {
         addMessage("character", config.greeting, charKey);
+      } else {
+        syncClearHistoryButton();
       }
     });
   }

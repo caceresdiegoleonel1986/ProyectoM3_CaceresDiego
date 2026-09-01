@@ -45,6 +45,7 @@ export function renderMessages() {
   const container = document.getElementById("messages");
   if (!container) return;
 
+  const preserved = Array.from(container.querySelectorAll(".status, .loader"));
   container.innerHTML = "";
 
   messages.forEach((m) => {
@@ -68,6 +69,10 @@ export function renderMessages() {
     }
 
     container.appendChild(div);
+  });
+
+  preserved.forEach((node) => {
+    container.appendChild(node.cloneNode(true));
   });
 
   container.scrollTop = container.scrollHeight;
