@@ -49,7 +49,6 @@ export function initChat() {
     const character = getSelectedCharacter() || "homero";
 
     addMessage("user", text);
-    setStatus("loading", "La IA está pensando...");
     showLoader();
 
     try {

@@ -30,7 +30,7 @@ export function router() {
   document.getElementById("app").innerHTML = view();
 
   if (path === "/chat") {
-    setStatus("idle", "¡Hola! Empezá la conversación cuando quieras 👋");
+    setStatus("idle", "");
 
     requestAnimationFrame(() => {
       const charKey = getSelectedCharacter() || "homero";
