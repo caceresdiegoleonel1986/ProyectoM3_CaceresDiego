@@ -37,20 +37,20 @@
   background: #111827;
   color: #f9fafb;
   text-align: center;
-  padding: 1rem;
+  padding: 0.7rem 1rem;
   box-shadow: 0 -2px 6px rgba(0,0,0,0.2);
   z-index: 999;
 }
 
 .footer__credits {
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   color: #9ca3af;
-  margin-top: 0.25rem;
+  margin-top: 0.2rem;
 }
 
 /* Espacio para evitar que el footer tape contenido */
 body {
-  padding-bottom: 70px;
+  padding-bottom: 58px;
 }
 
 /* Botón toggle dark/light */
