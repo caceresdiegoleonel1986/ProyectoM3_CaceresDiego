@@ -21,7 +21,7 @@ export class ChatEngine {
     return {
       model: "mock-gemini", // stub por ahora
       system: this.systemPrompt,
-      max_tokens: 256,
+      max_tokens: 134,
       temperature: 0.7,
       messages: this.messages
     };
