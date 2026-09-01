@@ -9,10 +9,10 @@ describe("Status component", () => {
     container = document.getElementById("messages");
   });
 
-  it("renderiza estado idle", () => {
-    setStatus("idle", "Esperando tu mensaje…");
-    expect(container.innerHTML).toContain("Esperando tu mensaje…");
-    expect(container.querySelector(".status.idle")).not.toBeNull();
+  it("no renderiza una burbuja vacía en estado idle", () => {
+    setStatus("idle", "");
+    expect(container.innerHTML).not.toContain("Esperando tu mensaje…");
+    expect(container.querySelector(".status.idle")).toBeNull();
   });
 
   it("renderiza estado loading con mensaje de pensamiento", () => {

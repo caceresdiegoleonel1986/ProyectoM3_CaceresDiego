@@ -18,7 +18,8 @@ function renderStatus() {
   // Renderizar según estado
   switch (state.status) {
     case "idle":
-      container.innerHTML += `<div class="status idle">${state.message || ""}</div>`;
+      if (!state.message) return;
+      container.innerHTML += `<div class="status idle">${state.message}</div>`;
       break;
     case "loading":
       container.innerHTML += `<div class="status loading">${state.message || "La IA está pensando..."}</div>`;
