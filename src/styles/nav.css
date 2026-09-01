@@ -3,13 +3,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
-  padding: 1rem;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
   background: linear-gradient(90deg, #111827, #374151);
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.18);
+}
+
+.mainNav__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 .mainNav__link {
@@ -17,15 +25,16 @@
   text-decoration: none;
   font-weight: 600;
   letter-spacing: 0.3px;
-  padding: 0.4rem 0.8rem;
-  border-radius: var(--radius);
-  transition: background var(--transition), transform var(--transition);
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
 }
 
 .mainNav__link:hover,
 .mainNav__link.active {
   background: rgba(255,255,255,0.15);
-  transform: translateY(-2px);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(148, 163, 184, 0.15);
 }
 
 /* Footer fijo */
@@ -55,17 +64,25 @@ body {
 
 /* Botón toggle dark/light */
 #toggle-dark {
-  background: transparent;
-  border: none;
-  font-size: 1.25rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
   cursor: pointer;
-  color: #f9fafb; /* color claro para nav oscuro */
-  transition: transform 0.2s ease, color 0.2s ease;
+  color: #f9fafb;
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
 }
 
 #toggle-dark:hover {
-  transform: scale(1.2);
-  color: #e5e7eb;
+  transform: translateY(-1px) scale(1.03);
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.15);
 }
 
 /* En modo claro, el nav es oscuro pero el texto del toggle debe seguir viéndose */
