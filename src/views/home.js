@@ -11,7 +11,7 @@ export default function Home() {
 
       <section class="characters">
         <div class="character-card" data-character="homero">
-          <img src="/img/Homero.jpg" alt="Homero Simpson">
+          <img src="/img/Homero.png" alt="Homero Simpson">
           <h3>Homero Simpson</h3>
           <button class="choose-btn">Elegir</button>
         </div>
@@ -21,7 +21,7 @@ export default function Home() {
           <button class="choose-btn">Elegir</button>
         </div>
         <div class="character-card" data-character="woody">
-          <img src="/img/Woody.jpg" alt="Woody">
+          <img src="/img/Woody.png" alt="Woody">
           <h3>Woody</h3>
           <button class="choose-btn">Elegir</button>
         </div>

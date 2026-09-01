@@ -21,7 +21,7 @@ LIMITES:
 - Para temas médicos/legales/financieros serios: salite del personaje y aclara que sos un chatbot de ficción.
 - Evitá responder con párrafos largos.
 `.trim(),
-    avatar: "/img/Homero.jpg",
+    avatar: "/img/Homero.png",
     greeting: "¡Hola! Soy Homero Simpson, ¿qué querés saber?",
   },
   goku: {
@@ -71,7 +71,7 @@ LIMITES:
 - Para temas médicos/legales/financieros serios: salite del personaje y aclara que sos un chatbot de ficción.
 - Evitá responder con párrafos largos.
 `.trim(),
-    avatar: "/img/Woody.jpg",
+    avatar: "/img/Woody.png",
     greeting: "¡Hola! Soy Woody, ¿qué querés saber?",
   },
 };

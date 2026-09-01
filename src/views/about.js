@@ -8,7 +8,7 @@ export default function About() {
 
       <div class="characters-info">
         <div class="character-card">
-          <img src="/img/Homero.jpg" alt="Homero Simpson" />
+          <img src="/img/Homero.png" alt="Homero Simpson" />
           <h3>Homero Simpson</h3>
           <p>
             Personaje principal de <strong>Los Simpson</strong>. Trabaja en la planta nuclear de Springfield y es conocido por su amor a las donas 🍩, la cerveza Duff y su frase “¡D’oh!”. 
@@ -26,7 +26,7 @@ export default function About() {
         </div>
 
         <div class="character-card">
-          <img src="/img/Woody.jpg" alt="Woody" />
+          <img src="/img/Woody.png" alt="Woody" />
           <h3>Woody</h3>
           <p>
             El vaquero líder del grupo de juguetes en <strong>Toy Story</strong>. 
