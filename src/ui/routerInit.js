@@ -5,9 +5,11 @@ export function initRouter() {
   // Render inicial
   router();
 
-  // Interceptar clicks en links internos
+  // Interceptar clicks en links internos (SPA)
   setupLinkInterception();
 
   // Manejar back/forward del navegador
-  window.addEventListener("popstate", router);
+  window.addEventListener("popstate", () => {
+    router();
+  });
 }
