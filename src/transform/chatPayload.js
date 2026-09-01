@@ -1,7 +1,7 @@
 const MODEL_NAME = "gemini-flash-lite-latest";
-const MAX_OUTPUT_TOKENS = 200;
-const TEMPERATURE = 0.9; 
-const MAX_TURNS_HISTORY = 12; 
+const MAX_OUTPUT_TOKENS = 80;
+const TEMPERATURE = 0.7;
+const MAX_TURNS_HISTORY = 8;
 
 // Convierte mensajes de UI al formato de Gemini
 export function toApiMessages(uiMessages) {
