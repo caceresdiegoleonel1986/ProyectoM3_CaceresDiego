@@ -49,8 +49,8 @@
 .characters {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
-  padding: 1.5rem 0.5rem;
+  gap: 1.25rem;
+  padding: 1.25rem 0.35rem;
   justify-items: center;
 }
 
@@ -62,6 +62,7 @@
   box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
   overflow: hidden;
   width: 100%;
+  max-width: 22rem;
   transition: transform var(--transition), box-shadow var(--transition);
   text-align: center;
   opacity: 0;
@@ -77,16 +78,32 @@
   box-shadow: 0 6px 16px rgba(0,0,0,0.15);
 }
 
-/* Imágenes uniformes */
+/* Imágenes con proporción real para mantener nitidez */
 .character-card img {
   width: 100%;
-  height: clamp(220px, 36vw, 320px);
-  object-fit: cover;
-  object-position: center top;
+  height: auto;
+  max-height: 18rem;
+  aspect-ratio: 163 / 244;
+  object-fit: contain;
+  object-position: center;
   display: block;
+  margin: 0 auto;
   border-bottom: 1px solid #e5e7eb;
   border-radius: 1.25rem 1.25rem 0 0;
   transition: transform var(--transition), filter var(--transition);
+  background: linear-gradient(135deg, rgba(148,163,184,0.18), rgba(255,255,255,0.2));
+}
+
+.character-card[data-character="homero"] img {
+  object-position: center;
+}
+
+.character-card[data-character="goku"] img {
+  object-position: center;
+}
+
+.character-card[data-character="woody"] img {
+  object-position: center;
 }
 
 .character-card img:hover {
@@ -94,10 +111,15 @@
   filter: brightness(1.05);
 }
 
+@media (min-width: 480px) {
+  .character-card img {
+    max-height: 20rem;
+  }
+}
+
 @media (min-width: 768px) {
   .character-card img {
-    height: 320px;
-    object-fit: cover;
+    max-height: 22rem;
   }
 }
 
