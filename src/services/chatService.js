@@ -1,6 +1,8 @@
 import { fetchGemini } from "./fetchGemini.js";
 
 export async function sendChatMessage({ messages, character = "homero" }) {
+  console.log(`[sendChatMessage] Iniciando con ${messages.length} mensajes, personaje: ${character}`);
+  
   const raw = await fetchGemini(messages, character);
 
   if (raw?.reply) {
