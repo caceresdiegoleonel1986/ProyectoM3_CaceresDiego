@@ -48,7 +48,7 @@ export default async function handler(req, res) {
 
     // Config de generación con límite de tokens
     const config = generationConfig && typeof generationConfig === "object" ? generationConfig : {
-      maxOutputTokens: 40,
+      maxOutputTokens: 60,
       temperature: 0.7,
     };
     
@@ -67,9 +67,11 @@ export default async function handler(req, res) {
     }
 
     // Extraer texto de la respuesta
-    const reply =
-      result?.response?.candidates?.[0]?.content?.parts?.[0]?.text ??
-      "No se pudo generar respuesta.";
+    const reply = result?.response?.candidates?.[0]?.content?.parts
+      ?.filter((part) => typeof part.text === "string")
+      .map((part) => part.text)
+      .join("")
+      .trim() || "No se pudo generar respuesta.";
 
     return res.status(200).json({ reply });
   } catch (error) {
