@@ -18,6 +18,14 @@ La SPA está construida con Vite y JavaScript modular, y la parte de IA se comun
 
 ---
 
+## Link de la aplicación desplegada
+
+La app publicada está disponible en:
+
+https://project-root-weld.vercel.app
+
+---
+
 ## Stack y estructura
 
 - Vite + JavaScript vanilla
@@ -154,13 +162,6 @@ El proyecto ya incluye `vercel.json` para manejar rutas SPA y salida de Vite.
 
 ---
 
-## Link de la aplicación desplegada
-
-La app publicada está disponible en:
-
-https://project-root-p2cxlrq4i-caceresdiegoleonel-5977.vercel.app
-
----
 
 ## Capturas de pantalla
 

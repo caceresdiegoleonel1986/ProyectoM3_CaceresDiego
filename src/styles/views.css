@@ -212,7 +212,7 @@ body.dark .character-card button:hover {
 }
 
 body.dark .mainFooter {
-  background: #111827;
+  background: linear-gradient(90deg, #111827, #374151);
   color: #f9fafb;
 }
 
