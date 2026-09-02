@@ -183,6 +183,10 @@ El proyecto ya incluye `vercel.json` para manejar rutas SPA y salida de Vite.
 
 La integración con IA se realiza con Gemini a través de la función serverless en `api/chat.js`.
 
+Además, durante el desarrollo se utilizaron herramientas de IA como apoyo para aprender conceptos, realizar consultas técnicas, analizar errores y corregir o mejorar código. Cada sugerencia fue revisada, comprendida, probada y adaptada antes de implementarse, verificando su compatibilidad con la arquitectura del proyecto y las pruebas existentes.
+
+En la carpeta [Uso de AI](./screenshots/uso%20de%20AI/) se incluye un registro visual de consultas, revisiones y parte del proceso de desarrollo asistido por IA.
+
 Flujo:
 
 1. El usuario escribe un mensaje desde la vista Chat.
