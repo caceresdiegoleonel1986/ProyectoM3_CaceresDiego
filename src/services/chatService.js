@@ -7,7 +7,7 @@ export async function sendChatMessage({ messages, character = "homero", config =
     const charConfig = getCharacterConfig(character);
     config.systemPrompt = charConfig.prompt;
     config.generationConfig = config.generationConfig || {
-      maxOutputTokens: 60,
+      maxOutputTokens: 80,
       temperature: 0.7,
     };
   }
