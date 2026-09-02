@@ -114,7 +114,11 @@ body.dark .input-area {
 }
 
 body.dark #chat-input {
-  background: #0f172a;
-  color: #f8fafc;
+  background: #ffffff;
+  color: #111827;
   border-color: rgba(148, 163, 184, 0.4);
+}
+
+body.dark #chat-input::placeholder {
+  color: #64748b;
 }
