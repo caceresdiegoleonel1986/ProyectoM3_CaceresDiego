@@ -9,9 +9,9 @@
 .chat {
   display: flex;
   flex-direction: column;
-  min-height: calc(100vh - 110px - 38px);
-  height: calc(100vh - 110px - 38px);
-  max-height: calc(100vh - 110px - 38px);
+  min-height: calc(100dvh - 110px - 56px);
+  height: calc(100dvh - 110px - 56px);
+  max-height: calc(100dvh - 110px - 56px);
   padding: 0.85rem 0.9rem 0.75rem;
   box-sizing: border-box;
 }
@@ -41,7 +41,7 @@
   flex: 1;
   min-height: 0;
   overflow-y: auto;
-  padding: 0.9rem 0.85rem 7rem;
+  padding: 0.9rem 0.85rem 1.25rem;
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -263,11 +263,15 @@ body.dark #send-btn:hover {
 
 @media (max-width: 420px) {
   .chat {
-    padding: 0.7rem 0.65rem 0.5rem;
+    min-height: calc(100dvh - 110px - 58px);
+    height: calc(100dvh - 110px - 58px);
+    max-height: calc(100dvh - 110px - 58px);
+    padding: 0.7rem 0.65rem 0.35rem;
   }
 
   .messages {
-    padding: 0.8rem 0.55rem 6.5rem;
+    padding: 0.8rem 0.55rem 0.75rem;
+    margin-bottom: 0.15rem;
   }
 
   .input-area {
