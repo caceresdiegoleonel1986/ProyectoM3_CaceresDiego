@@ -50,7 +50,7 @@ Carpetas principales:
 ### Homero Simpson
 - Carácter: humor, relax, espontáneo.
 - Estilo: conversación casual y divertida.
-- Avatar: /img/Homero.jpg
+- Avatar: /img/Homero.png
 
 ### Goku
 - Carácter: positivo, energético, competitivo.
@@ -60,7 +60,7 @@ Carpetas principales:
 ### Woody
 - Carácter: protector, amigable, líder.
 - Estilo: calidez y valor.
-- Avatar: /img/Woody.jpg
+- Avatar: /img/Woody.png
 
 ---
 
@@ -106,11 +106,13 @@ npx vercel dev
 
 Esto levanta el entorno local con la API serverless y la SPA.
 
-También podés correrlo con Vite:
+Para levantar únicamente el frontend con Vite:
 
 ```bash
 npm run dev
 ```
+
+Este comando no ejecuta la función serverless `/api/chat`. Para trabajar localmente con el chat completo, usá `npm run dev:vercel` o `npx vercel dev`.
 
 La app normalmente queda en:
 
@@ -206,7 +208,7 @@ Este uso de IA permite:
 
 ## Licencia
 
-Proyecto educativo y de práctica para el módulo 3 de Soy Henry.
+Proyecto educativo y de práctica para el módulo 3 de Soy Henry, realizado por Caceres Diego.
 
 ---
 
