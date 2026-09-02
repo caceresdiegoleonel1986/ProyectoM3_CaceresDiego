@@ -8,6 +8,6 @@ describe("chat payload token budget", () => {
       uiMessages: [{ role: "user", text: "Hola" }],
     });
 
-    expect(payload.generationConfig.maxOutputTokens).toBeLessThanOrEqual(90);
+    expect(payload.generationConfig.maxOutputTokens).toBe(120);
   });
 });
