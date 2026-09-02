@@ -1,5 +1,5 @@
 const MODEL_NAME = "gemini-flash-lite-latest";
-const MAX_OUTPUT_TOKENS = 80;
+const MAX_OUTPUT_TOKENS = 40;
 const TEMPERATURE = 0.7;
 const MAX_TURNS_HISTORY = 8;
 
@@ -7,7 +7,7 @@ const MAX_TURNS_HISTORY = 8;
 export function toApiMessages(uiMessages) {
   return uiMessages.map((msg) => ({
     role: msg.role === "character" ? "model" : "user",
-    parts: [{ text: msg.text }],
+    parts: [{ text: msg.content }],
   }));
 }
 
@@ -36,11 +36,11 @@ export function normalizeAIResponse(raw) {
 
 // Helpers para historial
 export function appendUserMessage(messages, text) {
-  return [...messages, { role: "user", text }];
+  return [...messages, { role: "user", content: text }];
 }
 
 export function appendAssistantMessage(messages, text) {
-  return [...messages, { role: "character", text }];
+  return [...messages, { role: "character", content: text }];
 }
 
 export function getTrimmedHistory(messages, maxTurns = MAX_TURNS_HISTORY) {
