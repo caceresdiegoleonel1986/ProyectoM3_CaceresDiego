@@ -13,7 +13,7 @@ export function toApiMessages(uiMessages) {
 
 // Construye el payload para Gemini
 export function buildPayload({ systemPrompt, uiMessages }) {
-  return {
+  const payload = {
     model: MODEL_NAME,
     systemInstruction: { parts: [{ text: systemPrompt }] },
     contents: toApiMessages(uiMessages),
@@ -22,6 +22,11 @@ export function buildPayload({ systemPrompt, uiMessages }) {
       temperature: TEMPERATURE,
     },
   };
+
+  // Debug: mostrar estructura de mensajes
+  console.log(`[Payload] Enviando ${uiMessages.length} mensajes | maxTokens: ${MAX_OUTPUT_TOKENS}`);
+  
+  return payload;
 }
 
 // Normaliza la respuesta cruda a texto limpio

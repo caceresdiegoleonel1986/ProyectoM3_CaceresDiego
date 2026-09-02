@@ -50,7 +50,9 @@ export async function getCharacterReply(uiMessages, character = "homero") {
   // 6. Loguear tokens en consola (solo debug, útil para ver consumo de contexto)
   const usage = rawResponse?.usageMetadata;
   if (usage) {
-    console.log(`[Tokens] input: ${usage.promptTokenCount}, output: ${usage.candidatesTokenCount}`);
+    console.log(`[Tokens AI] 📊 Input: ${usage.promptTokenCount} | Output: ${usage.candidatesTokenCount} (límite: 40 máx)`);
+  } else {
+    console.log(`[Tokens AI] ⚠️  Sin metadata de tokens en la respuesta`);
   }
 
   // Devolver el texto final para mostrar en la UI
