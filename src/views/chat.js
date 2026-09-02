@@ -34,6 +34,7 @@ export function initChat() {
   const input = document.getElementById("chat-input");
   const clearArea = document.querySelector(".clear-area");
   const clearBtn = document.getElementById("clear-history-btn");
+  let isSending = false;
 
   if (!sendBtn || !input) return;
 
@@ -44,9 +45,12 @@ export function initChat() {
 
   const sendMessage = async () => {
     const text = input.value.trim();
-    if (!text) return;
+    if (!text || isSending) return;
 
     const character = getSelectedCharacter() || "homero";
+    isSending = true;
+    newSendBtn.disabled = true;
+    input.disabled = true;
 
     addMessage("user", text);
     showLoader();
@@ -61,11 +65,18 @@ export function initChat() {
       setStatus("success", "Respuesta recibida");
       syncClearHistoryButton();
     } catch (err) {
-      addMessage("assistant", "Error al conectar con la AI");
-      setStatus("error", "Error al conectar con la AI");
+      const errorMessage = err?.status === 429
+        ? "La IA está temporalmente limitada. Esperá unos segundos e intentá nuevamente."
+        : "No se pudo conectar con la IA. Intentá nuevamente.";
+      addMessage("assistant", errorMessage);
+      setStatus("error", errorMessage);
     } finally {
       hideLoader();
       input.value = "";
+      isSending = false;
+      newSendBtn.disabled = false;
+      input.disabled = false;
+      input.focus();
     }
   };
 
@@ -84,6 +95,7 @@ export function initChat() {
       clearCharacterHistory(character);
       syncClearHistoryButton();
       addMessage("character", getWelcomeMessage(character), character);
+      setStatus("success", "Historial borrado");
     });
   }
 }

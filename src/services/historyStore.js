@@ -10,7 +10,15 @@ export function saveHistory(characterKey, messages) {
 export function loadHistory(characterKey) {
   if (!characterKey) return [];
   const saved = localStorage.getItem(getHistoryKey(characterKey));
-  return saved ? JSON.parse(saved) : [];
+  if (!saved) return [];
+
+  try {
+    const history = JSON.parse(saved);
+    return Array.isArray(history) ? history : [];
+  } catch {
+    localStorage.removeItem(getHistoryKey(characterKey));
+    return [];
+  }
 }
 
 export function clearStoredHistory(characterKey) {

@@ -30,9 +30,9 @@ describe("Integración Chat - Error", () => {
     const messages = getMessages();
     expect(messages.length).toBe(2); // usuario + mensaje de error
     expect(messages[0].content).toBe("Hola Homero");
-    expect(messages[1].content).toBe("Error al conectar con la AI");
+    expect(messages[1].content).toBe("No se pudo conectar con la IA. Intentá nuevamente.");
 
     const container = document.getElementById("messages");
-    expect(container.innerHTML).toContain("Error al conectar con la AI");
+    expect(container.innerHTML).toContain("No se pudo conectar con la IA. Intentá nuevamente.");
   });
 });

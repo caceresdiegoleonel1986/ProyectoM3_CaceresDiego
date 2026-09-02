@@ -102,7 +102,7 @@ describe("Integración Chat", () => {
     sendBtn.click();
 
     const msg2 = await waitForMessage(1);
-    expect(msg2.content).toBe("Error al conectar con la AI");
+    expect(msg2.content).toBe("No se pudo conectar con la IA. Intentá nuevamente.");
   });
 
   it("muestra el botón de borrar historial si ya existe historial", () => {

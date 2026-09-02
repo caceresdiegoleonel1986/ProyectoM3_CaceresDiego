@@ -14,25 +14,41 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "messages requerido y no vacío" });
     }
 
+    if (messages.some((message) => (
+      !message ||
+      !["user", "character", "assistant"].includes(message.role) ||
+      typeof message.content !== "string" ||
+      !message.content.trim()
+    ))) {
+      return res.status(400).json({ error: "messages contiene un mensaje inválido" });
+    }
+
+    if (!process.env.GEMINI_API_KEY) {
+      console.error("GEMINI_API_KEY no está configurada");
+      return res.status(500).json({ error: "Servicio de IA no configurado" });
+    }
+
+    if (systemPrompt !== undefined && typeof systemPrompt !== "string") {
+      return res.status(400).json({ error: "systemPrompt inválido" });
+    }
+
     // Inicializar SDK con tu API key
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-    const model = genAI.getGenerativeModel({ model: MODEL_NAME });
-
-    // Usar el prompt enviado o uno por defecto
+    // Configurar la personalidad como instrucción del sistema, separada del historial.
     const prompt = systemPrompt || `Eres ${character}, respondé como ese personaje.`;
+    const model = genAI.getGenerativeModel({
+      model: MODEL_NAME,
+      systemInstruction: prompt,
+    });
 
-    // Construir historial (sin role "system")
-    const contents = [
-      { role: "user", parts: [{ text: prompt }] },
-      ...messages.map(m => ({
-        role: m.role === "assistant" ? "model" : "user",
-        parts: [{ text: m.content }]
-      }))
-    ];
+    const contents = messages.map((message) => ({
+      role: message.role === "user" ? "user" : "model",
+      parts: [{ text: message.content }],
+    }));
 
     // Config de generación con límite de tokens
-    const config = generationConfig || {
-      maxOutputTokens: 30,
+    const config = generationConfig && typeof generationConfig === "object" ? generationConfig : {
+      maxOutputTokens: 40,
       temperature: 0.7,
     };
     

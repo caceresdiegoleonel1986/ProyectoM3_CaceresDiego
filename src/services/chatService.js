@@ -2,14 +2,12 @@ import { fetchGemini } from "./fetchGemini.js";
 import { getCharacterConfig } from "../config/characters.js";
 
 export async function sendChatMessage({ messages, character = "homero", config = {} }) {
-  console.log(`[sendChatMessage] Iniciando con ${messages.length} mensajes, personaje: ${character}`);
-  
   // Obtener config del personaje si no se proporciona
   if (!config.systemPrompt) {
     const charConfig = getCharacterConfig(character);
     config.systemPrompt = charConfig.prompt;
     config.generationConfig = config.generationConfig || {
-      maxOutputTokens: 30,
+      maxOutputTokens: 40,
       temperature: 0.7,
     };
   }
