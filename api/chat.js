@@ -32,7 +32,7 @@ export default async function handler(req, res) {
 
     // Config de generación con límite de tokens
     const config = generationConfig || {
-      maxOutputTokens: 40,
+      maxOutputTokens: 30,
       temperature: 0.7,
     };
     

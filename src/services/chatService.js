@@ -9,7 +9,7 @@ export async function sendChatMessage({ messages, character = "homero", config =
     const charConfig = getCharacterConfig(character);
     config.systemPrompt = charConfig.prompt;
     config.generationConfig = config.generationConfig || {
-      maxOutputTokens: 40,
+      maxOutputTokens: 30,
       temperature: 0.7,
     };
   }
