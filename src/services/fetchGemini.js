@@ -2,7 +2,7 @@
 
 import { fetchJson } from "./fetchJson.js";
 
-export async function fetchGemini(messages, character) {
+export async function fetchGemini(messages, character, config = {}) {
   console.log(`[fetchGemini] Enviando ${messages.length} mensajes, personaje: ${character}`);
   console.log(`[fetchGemini] Mensajes:`, messages);
   
@@ -10,23 +10,14 @@ export async function fetchGemini(messages, character) {
   return await fetchJson("/api/chat", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ messages, character }), // payload con mensajes y personaje
+    body: JSON.stringify({ 
+      messages, 
+      character,
+      systemPrompt: config.systemPrompt,
+      generationConfig: config.generationConfig
+    }),
   }).then(response => {
-    console.log(`[fetchGemini] Respuesta completa:`, response);
-    console.log(`[fetchGemini] Respuesta keys:`, Object.keys(response));
-    
-    // Buscar metadata en diferentes ubicaciones
-    const metadata = response?.usageMetadata || response?.usage || response?.metrics;
-    console.log(`[fetchGemini] Metadata encontrada:`, metadata);
-    
-    if (metadata) {
-      const inputTokens = metadata.promptTokenCount || metadata.input_tokens || 0;
-      const outputTokens = metadata.candidatesTokenCount || metadata.output_tokens || 0;
-      console.log(`[Tokens] Input: ${inputTokens} | Output: ${outputTokens} (máximo: 40)`);
-    } else {
-      console.log(`[fetchGemini] ⚠️ No hay metadata en la respuesta`);
-    }
-    
+    console.log(`[fetchGemini] Reply: ${response?.reply?.length || 0} caracteres`);
     return response;
   }).catch(err => {
     console.error(`[fetchGemini] Error:`, err);

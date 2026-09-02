@@ -9,7 +9,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { messages, character } = req.body ?? {};
+    const { messages, character, systemPrompt, generationConfig } = req.body ?? {};
     if (!Array.isArray(messages) || messages.length === 0) {
       return res.status(400).json({ error: "messages requerido y no vacío" });
     }
@@ -18,20 +18,37 @@ export default async function handler(req, res) {
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
     const model = genAI.getGenerativeModel({ model: MODEL_NAME });
 
-    // Prompt del personaje
-    const systemPrompt = `Eres ${character}, respondé como ese personaje.`;
+    // Usar el prompt enviado o uno por defecto
+    const prompt = systemPrompt || `Eres ${character}, respondé como ese personaje.`;
 
     // Construir historial (sin role "system")
     const contents = [
-      { role: "user", parts: [{ text: systemPrompt }] },
+      { role: "user", parts: [{ text: prompt }] },
       ...messages.map(m => ({
         role: m.role === "assistant" ? "model" : "user",
         parts: [{ text: m.content }]
       }))
     ];
 
+    // Config de generación con límite de tokens
+    const config = generationConfig || {
+      maxOutputTokens: 40,
+      temperature: 0.7,
+    };
+    
+    console.log(`[Gemini API] Llamando con maxOutputTokens: ${config.maxOutputTokens}`);
+
     // Llamar a Gemini
-    const result = await model.generateContent({ contents });
+    const result = await model.generateContent({ 
+      contents,
+      generationConfig: config 
+    });
+
+    // Log de tokens consumidos
+    const usage = result?.response?.usageMetadata;
+    if (usage) {
+      console.log(`[Gemini Tokens] Input: ${usage.promptTokenCount} | Output: ${usage.candidatesTokenCount}`);
+    }
 
     // Extraer texto de la respuesta
     const reply =
