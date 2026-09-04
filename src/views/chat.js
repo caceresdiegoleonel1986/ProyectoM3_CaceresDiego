@@ -59,6 +59,11 @@ export function initChat() {
       const response = await sendChatMessage({
         messages: getMessages(),
         character,
+        config: {
+          onRetry: ({ attempt, remaining }) => {
+            setStatus("loading", `Límite de la IA alcanzado. Reintentando (intento ${attempt}) en ${remaining}s...`);
+          },
+        },
       });
 
       addMessage("character", response, character);

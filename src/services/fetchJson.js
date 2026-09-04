@@ -8,6 +8,8 @@ export async function fetchJson(url, options = {}) {
     if (!response.ok) {
       const err = new Error(`HTTP ${response.status}: ${response.statusText}`);
       err.status = response.status;
+      // Adjuntar el body (ej: retryAfterSeconds en 429) para que capas superiores puedan reaccionar
+      err.body = await response.json().catch(() => null);
       throw err;
     }
 
