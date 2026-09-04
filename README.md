@@ -138,6 +138,21 @@ También podés correr un archivo individual:
 npx vitest run tests/chatIntegration.test.js
 ```
 
+### Test end-to-end contra el deploy real
+
+`tests/e2e/deployment.e2e.test.js` valida el flujo completo (SPA + función serverless `/api/chat`) contra el entorno desplegado en Vercel. No corre en `npm test` por defecto para no consumir cuota real de la API ni depender de la red en cada corrida local/CI:
+
+```bash
+RUN_E2E=true npx vitest run tests/e2e/deployment.e2e.test.js
+```
+
+Opcionalmente podés apuntar a otro deploy con `E2E_BASE_URL=https://otra-url.vercel.app`.
+
+### Manejo de errores 429 (rate limit)
+
+Cuando Gemini responde con 429, `api/chat.js` devuelve `retryAfterSeconds`. En el frontend, `src/services/fetchGemini.js` reintenta automáticamente hasta 2 veces esperando ese tiempo, notificando el progreso vía un callback `onRetry` que `src/views/chat.js` usa para mostrar un contador visual ("Reintentando en Xs...") con `setStatus`. Si los reintentos se agotan, se muestra el mensaje de error habitual.
+
+
 ---
 
 ## Cómo desplegar en Vercel
