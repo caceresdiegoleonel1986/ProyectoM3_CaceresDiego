@@ -39,15 +39,6 @@ export function normalizeAIResponse(raw) {
     .trim();
 }
 
-// Helpers para historial
-export function appendUserMessage(messages, text) {
-  return [...messages, { role: "user", content: text }];
-}
-
-export function appendAssistantMessage(messages, text) {
-  return [...messages, { role: "character", content: text }];
-}
-
 export function getTrimmedHistory(messages, maxTurns = MAX_TURNS_HISTORY) {
   return messages.slice(-maxTurns);
 }

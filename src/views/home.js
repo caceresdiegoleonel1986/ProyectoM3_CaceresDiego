@@ -1,6 +1,5 @@
 import { initCharacterChoice } from "../ui/characterChoice.js";
 import { setStatus } from "../ui/status.js";
-import { getCharacterReply } from "../services/aiClient.js";
 
 export default function Home() {
   const html = `
